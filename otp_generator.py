@@ -4,6 +4,7 @@ Generate One Time Pad files, or serve the pads up using a CherryPy server.
 """
 import secrets
 
+#TODO Add date parms to file name
 WorkingDir = 'D:\\Code\\Visual Studio Code\\one_time_pad\\pads\\'
 
 
