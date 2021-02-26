@@ -1,7 +1,13 @@
 #! /usr/bin/env python3
+
 """
-Generate One Time Pad files, or serve the pads up using a CherryPy server.
+Author: Matt Bernard
+otp_generator.py (c) 2021
+Desc: One Time pad generator
+Created:  2021-02-26T01:29:29.342Z
+Modified: !date!
 """
+
 import secrets
 import uuid
 
