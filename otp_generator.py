@@ -3,9 +3,11 @@
 Generate One Time Pad files, or serve the pads up using a CherryPy server.
 """
 import secrets
+import uuid
 
-#TODO Add date parms to file name
+
 WorkingDir = 'D:\\Code\\Visual Studio Code\\one_time_pad\\pads\\'
+Ident = str(uuid.uuid4().hex)
 
 
 # The characters available for the One Time Pad
@@ -47,7 +49,7 @@ Put all messages into the page
 messages = (generate_message()+'\n' for _ in range(MESSAGE_COUNT))
 
 
-with open(WorkingDir + 'OTP.txt', 'w') as writer:
+with open(WorkingDir + Ident + '_OTP.txt', 'w') as writer:
     for m in messages:
         #print(m)
         writer.write(m)
