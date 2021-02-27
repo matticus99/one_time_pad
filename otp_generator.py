@@ -12,8 +12,6 @@ import secrets
 import uuid
 import os
 
-print()
-
 
 #File and Path parameters
 WorkingDir = os.getcwd()
