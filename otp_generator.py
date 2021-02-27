@@ -10,9 +10,14 @@ Modified: !date!
 
 import secrets
 import uuid
+import os
+
+print()
 
 
-WorkingDir = 'D:\\Code\\Visual Studio Code\\one_time_pad\\pads\\'
+#File and Path parameters
+WorkingDir = os.getcwd()
+WorkingFolder = '\\pads\\'
 Ident = str(uuid.uuid4().hex)
 
 
@@ -29,12 +34,8 @@ MESSAGE_COUNT = 9
 
 
 def generate_row(group_count=GROUP_COUNT, group_size=GROUP_SIZE):
-    """
-    Generate a string of random characters, groups in this string are separated by spaces.
+    # Generate a string of random characters, groups in this string are separated by spaces.
 
-    Example:
-        NLJDS KW9JG 30AZJ J0XQ4 IRP0Z L6YQT AB7AO RY5XG
-    """
     groups = []
     for _ in range(group_count):
         groups.append(''.join([secrets.choice(OTP_CHARS) for _ in range(group_size)]))
@@ -42,20 +43,14 @@ def generate_row(group_count=GROUP_COUNT, group_size=GROUP_SIZE):
 
 
 def generate_message(row_count=ROW_COUNT, group_count=GROUP_COUNT, group_size=GROUP_SIZE):
-    """
-    Combine several rows into a single message.
-    """
+    # Combine several rows into a single message.
+
     return '\n'.join(generate_row(group_count, group_size) for _ in range(ROW_COUNT))
 
-
-"""
-Put all messages into the page
-"""
-
+# Consolidate messages
 messages = (generate_message()+'\n' for _ in range(MESSAGE_COUNT))
 
 
-with open(WorkingDir + Ident + '_OTP.txt', 'w') as writer:
+with open(WorkingDir + WorkingFolder + Ident + '_OTP.txt', 'w') as writer:
     for m in messages:
-        #print(m)
         writer.write(m)
