@@ -18,6 +18,8 @@ WorkingDir = os.getcwd()
 WorkingFolder = '\\pads\\'
 Ident = str(uuid.uuid4().hex)
 
+# Header Message
+HEADER = 'Use each set to code your message. After coding the message cut off the set and destroy it.'
 
 # The characters available for the One Time Pad
 OTP_CHARS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
@@ -42,13 +44,13 @@ def generate_row(group_count=GROUP_COUNT, group_size=GROUP_SIZE):
 
 def generate_message(row_count=ROW_COUNT, group_count=GROUP_COUNT, group_size=GROUP_SIZE):
     # Combine several rows into a single message.
-
     return '\n'.join(generate_row(group_count, group_size) for _ in range(ROW_COUNT))
 
 # Consolidate messages
-messages = (generate_message()+'\n' for _ in range(MESSAGE_COUNT))
+messages = ('Set ' + str(idx) + '\n' + generate_message()+'\n'*2 for idx in range(MESSAGE_COUNT))
 
 
 with open(WorkingDir + WorkingFolder + Ident + '_OTP.txt', 'w') as writer:
+    writer.write(HEADER + '\n'*2)
     for m in messages:
         writer.write(m)
