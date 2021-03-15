@@ -9,6 +9,7 @@ Modified: !date!
 """
 
 import secrets
+import sys
 import uuid
 import os
 
@@ -50,7 +51,15 @@ def generate_message(row_count=ROW_COUNT, group_count=GROUP_COUNT, group_size=GR
 messages = ('Set ' + str(idx) + '\n' + generate_message()+'\n'*2 for idx in range(MESSAGE_COUNT))
 
 
-with open(WorkingDir + WorkingFolder + Ident + '_OTP.txt', 'w') as writer:
-    writer.write(HEADER + '\n'*2)
-    for m in messages:
-        writer.write(m)
+
+
+def main(argv):
+    print(argv) 
+    with open(WorkingDir + WorkingFolder + Ident + '_OTP.txt', 'w') as writer:
+        writer.write(HEADER + '\n'*2)
+        for m in messages:
+            writer.write(m)
+    input()
+
+if __name__ == "__main__":
+    sys.exit(int(main(sys.argv[1:]) or 0))
